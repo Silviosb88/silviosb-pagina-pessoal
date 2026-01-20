@@ -20,3 +20,26 @@ rad.json
 *.flf
 #Test results file
 TestResults.xml
+
+### Website ###
+# Development files
+node_modules/
+.DS_Store
+*.log
+.env
+.env.local
+
+# Build artifacts (if using build tools in the future)
+dist/
+build/
+.cache/
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+Thumbs.db
+.DS_Store
