@@ -82,8 +82,8 @@ document.addEventListener('DOMContentLoaded', () => {
 // Current year in footer
 document.addEventListener('DOMContentLoaded', () => {
     const currentYear = new Date().getFullYear();
-    const footerYear = document.querySelector('.footer-content p');
-    if (footerYear && footerYear.textContent.includes('2026')) {
-        footerYear.textContent = footerYear.textContent.replace('2026', currentYear);
+    const yearElement = document.getElementById('current-year');
+    if (yearElement) {
+        yearElement.textContent = currentYear;
     }
 });
