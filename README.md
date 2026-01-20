@@ -106,6 +106,45 @@ Se você tem um servidor web próprio:
 2. Configure o servidor web (Apache/Nginx) para servir os arquivos
 3. Aponte seu domínio para o servidor
 
+### Opção 5: GitHub Pages + Cloudflare (Recomendado para Domínio Próprio)
+
+Esta opção combina o GitHub Pages gratuito com o CDN e segurança do Cloudflare:
+
+**Passo 1: Configurar GitHub Pages**
+1. Siga os passos da "Opção 1: GitHub Pages" acima
+2. Aguarde o site estar disponível em `https://Silviosb88.github.io/silviosb-pagina-pessoal/`
+
+**Passo 2: Configurar Cloudflare**
+1. Crie uma conta gratuita no [cloudflare.com](https://cloudflare.com)
+2. Adicione seu domínio ao Cloudflare
+3. Atualize os nameservers do seu domínio para os fornecidos pelo Cloudflare
+
+**Passo 3: Configurar DNS no Cloudflare**
+1. No painel do Cloudflare, vá em "DNS"
+2. Adicione os seguintes registros:
+   - Tipo: `CNAME`
+   - Nome: `@` (ou `www` se preferir)
+   - Conteúdo: `Silviosb88.github.io`
+   - Proxy: ✅ Ativado (laranja)
+   
+3. Se quiser ambos (com e sem www):
+   - Adicione outro registro CNAME com nome `www` apontando para o mesmo destino
+
+**Passo 4: Configurar Custom Domain no GitHub**
+1. No GitHub, vá em `Settings` > `Pages`
+2. Em "Custom domain", digite seu domínio (ex: `seudominio.com`)
+3. Clique em `Save`
+4. Aguarde a verificação do DNS (pode levar alguns minutos)
+5. Marque a opção "Enforce HTTPS" quando disponível
+
+**Benefícios desta configuração:**
+- ✅ Hospedagem gratuita no GitHub Pages
+- ✅ CDN global do Cloudflare para velocidade
+- ✅ Proteção DDoS gratuita
+- ✅ SSL/HTTPS automático e seguro
+- ✅ Cache otimizado
+- ✅ Analytics básico (opcional)
+
 ## ⚠️ Ações Necessárias Antes de Publicar
 
 ### 1. Atualizar Links das Redes Sociais
@@ -142,7 +181,9 @@ Substitua `contato@exemplo.com` pelo seu email real:
 
 ### 3. Integrar Formulário de Contato Real
 
-O formulário atual é apenas demonstrativo. Para torná-lo funcional, use o [Formspree](https://formspree.io):
+O formulário atual é apenas demonstrativo. Aqui estão algumas opções gratuitas para torná-lo funcional:
+
+#### Opção A: Formspree (Mais Simples - Recomendado)
 
 1. Crie conta gratuita no [formspree.io](https://formspree.io)
 2. Crie um novo formulário
@@ -158,6 +199,46 @@ O formulário atual é apenas demonstrativo. Para torná-lo funcional, use o [Fo
 ```
 
 5. No arquivo `script.js`, comente ou remova a simulação de envio (linhas 114-125)
+
+**Vantagens:** Muito simples, sem servidor próprio, 50 envios/mês gratuitos
+
+#### Opção B: Netlify Forms (Se hospedar no Netlify)
+
+1. No arquivo `index.html`, adicione `data-netlify="true"` ao formulário:
+
+```html
+<form class="contact__form" id="contact-form" data-netlify="true" name="contact">
+```
+
+2. Adicione um campo oculto para o nome do formulário:
+
+```html
+<input type="hidden" name="form-name" value="contact">
+```
+
+3. Faça deploy no Netlify - os formulários são detectados automaticamente
+
+**Vantagens:** 100 envios/mês gratuitos, integrado com o Netlify
+
+#### Opção C: Google Forms (Totalmente Gratuito)
+
+1. Crie um formulário no [Google Forms](https://forms.google.com)
+2. Configure os campos (nome, email, assunto, mensagem)
+3. Obtenha o link do formulário
+4. No arquivo `index.html`, substitua o formulário atual por um link ou iframe
+
+**Vantagens:** Ilimitado e gratuito, respostas em planilha Google
+
+#### Opção D: EmailJS (Email direto sem backend)
+
+1. Crie conta em [emailjs.com](https://emailjs.com)
+2. Configure um serviço de email (Gmail, Outlook, etc.)
+3. Adicione o código do EmailJS no `script.js`
+4. Configure o template de email
+
+**Vantagens:** 200 emails/mês gratuitos, envia direto para seu email
+
+**Recomendação:** Para começar, use **Formspree** (Opção A) por ser a mais simples e funcionar bem com GitHub Pages.
 
 ### 4. Criar Páginas Completas dos Posts do Blog
 
